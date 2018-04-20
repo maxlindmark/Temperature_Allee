@@ -8,6 +8,11 @@
 % The code below reads data from matcont, appends and reshapes data before saving.
 % This is MATLAB code and should be copied into an editor or directly into the command window.
 
+% Limit points: These points represent special points where a curve reaches a maximum or minimum parameter value and bends back on its self. When the curve represents equilibrium points of a problem in biological population dynamics such a point marks the threshold where a stable equilibrium state and an unstable state (saddle point) merge and disappear.
+% Branch point: These points represent special points where 2 different solution curves intersect for a particular parameter value. Although in generic systems of equations this happens only rarely, in systems of equations stemming from biological population dynamics this occurs frequently. These points then represent so-called invasion points, the intersection between a curve representing a zero-valued equilibrium density of a population and a curve representing equilibria with a positive equilibrium density. 
+% These comments come from: read me in Floor & de Roos 2017 Supplement
+
+
 %-------------- Main text:
 %-------------- Fig. 1 - "Temp_Allee" - Continuation over temperature, default model AND p=0.5
 % Orbit is named o_def
