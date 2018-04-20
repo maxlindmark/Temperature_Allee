@@ -1,5 +1,5 @@
 ####
-## 2018.01.09 - Script for reading data and producing figures 
+## 2018.01.09 - Script for reading data and producing the figure: Continuation over temperature for two different p-values
 ####
 
 #---- Continuation over temperature for two different p-values
@@ -26,11 +26,11 @@ dat_p05$p <- 0.5
 dat <- rbind(dat_p05, dat_p1)
 
 dat <- rename(dat,
-                 R = V1,
-                 J = V2,
-                 A = V3,
-                 P = V4,
-                 Temp = V5)
+              R = V1,
+              J = V2,
+              A = V3,
+              P = V4,
+              Temp = V5)
 
 dat_ty <- dat[order(dat$Temp),]
 
@@ -63,9 +63,9 @@ dlong %>%
       filter(., tc < 34 & tc > 9) %>% 
              ggplot(., aes(x = tc, y = biomass_dens, 
              colour = factor(stability))) + 
-                    geom_point(size=1) + 
-                      facet_wrap(p ~ state_v, ncol = 4, scales = "free_y") + 
-                        xlim(5,35)
+               geom_point(size=1) + 
+                 facet_wrap(p ~ state_v, ncol = 4, scales = "free_y") + 
+                   xlim(5,35)
 
 #---- Now, based on the dimensions of the plot above, make a 3*2 plot in base R, with invasion and persistence boundaries, boxes for regulation etc...
 
