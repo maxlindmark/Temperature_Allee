@@ -1,12 +1,12 @@
 %------------ Exporting data ------------%
-%------ To only reproduce the figures, see the *github-repository*. 
-%---- If you have followed the instructions below and want to re-export the data based on the simulated curves in the GUI, use the code below:
-%-- Note: Analyses are based on the default parameters above (and Table X in supplementary material) unless stated otherwise. 
-%-- Time integrations are not exported but are only saved, like this: o_"name", where the name is based on the specific parameter deviation from the default model. 
-% simulated data is exported below and saved as csv-files and stored here: * ADD LINK TO GITHUB URL *
-% The numbers in parenthesis after the curve name corresponds to (1) backward continuation (2) forward continuation (3) continuation from branch point to get stable C-R curve after predator extinction in the case of bistability
+%------ To only reproduce the figures, see folder "R" and "Data". 
+%---- If you to open the models in MatCont (see "Read_me") and want to re-export the data , use the code below:
+%-- Note: Analyses are based on the default parameters above (and Table S2 in the Appendix) unless stated otherwise in the curve name. 
+%-- Time integrations are not exported but are only saved, like this: o_"name", where the name is based on the specific parameter deviation from the default model and "o" refers to "orbit". 
+% Simulated data is exported locally so you unfortunately need to specify your own path.
+% The numbers in parenthesis after the curve name corresponds to (1) backward continuation (2) forward continuation (3) continuation from branch point to get stable C-R curve after predator extinction.
 % The code below reads data from matcont, appends and reshapes data before saving.
-% Below is MATLAB code and should be copied into an editor or directly into the command window.
+% This is MATLAB code and should be copied into an editor or directly into the command window.
 
 %-------------- Main text:
 %-------------- Fig. 1 - "Temp_Allee" - Continuation over temperature, default model AND p=0.5
