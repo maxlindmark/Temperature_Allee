@@ -1,0 +1,129 @@
+% This is what goes into matcont GUI when specifying a new system rather than opening the current one (copy paste the below text). 
+%------------ Model Name ------------%
+msII_Paper
+
+%------------ Coordinates ------------%
+Rc,J,A,P
+
+%------------ Parameters ------------%
+z,w_J,w_A,w_P,T,T0,k,s_c,s_p,p,d,rE,KE,K,ro,mc_c,mc_p,mb,R_0,mbp,R_0p,ME,Ia,Ib,ic_c,ic_p,A_J_T19,A_A_T19,A_P_T19,u_J_T19,u_A_T19,u_P_T19,uE
+
+%------------ Parameter values ------------%
+% See ms I for parameter estimates and functions 
+% default parameters
+
+% sizes
+z = 0.00025
+w_J = 3.9 
+w_A = 32.4
+w_P = 642.6 % see R script pisc attack rate ms II
+
+% general parameters
+T = 292.15
+T0 = 292.15 
+k = 8.617332e-05 
+s_c = 0.3 
+s_p = 0.4 
+p = 1 % proportion feeding on juveniles
+
+% resource
+d = 0.1 
+rE = 0.43 
+KE = -0.43 
+K = 1.7 
+
+ro = 1 % scaling activation energy
+
+% maintenance 
+mc_c = 0
+mc_p = 0
+mb = 0.77 
+R_0 = 0.0123
+mbp = 0.76 
+R_0p = 0.019
+ME = 0.594
+
+% imax
+Ia = 0.25 
+Ib = 0.77
+ic_c = 0
+ic_p = 0
+
+% attack rate 
+A_J_T19 = 25.9720
+A_A_T19 = 9.0828
+A_P_T19 = 0.0179
+
+% mortality
+u_J_T19 = 0.0011
+u_A_T19 = 6.2872e-04
+u_P_T19 = 0.00029792
+uE = 0.45 
+
+%------------ Initial values of state variables ------------%
+Rc=1
+J=1
+A=1
+P=1
+
+%------------ User functions ------------%
+%-- These are used to track non-state variables. The downside is they can only be specified in terms of paramters and state variables
+% This makes them super long and are therefor put in a separate text file (see
+% userfunctions.txt). If you want to track non-state variables, copy paste the functions in the txt file.
+
+%------------ Model System ------------%
+%-- See R-script/appendix for parameter values (simplifying code here with params rather than allometric functions) "User Functions"
+
+r_d = exp(rE*(T-T0)/(k*T*T0))
+r_K = exp(KE*(T-T0)/(k*T*T0))
+r_i = exp(ME*ro*(T-T0)/(k*T*T0))
+r_u = exp(uE*(T-T0)/(k*T*T0))
+r_m = exp(ME*(T-T0)/(k*T*T0))
+
+Imax_J = ((Ia*w_J^(Ib+ic_c*(T-T0)))*r_i) / w_J
+Imax_A = ((Ia*w_A^(Ib+ic_c*(T-T0)))*r_i) / w_A
+Imax_P = ((Ia*w_P^(Ib+ic_p*(T-T0)))*r_i) / w_P
+
+A_J = A_J_T19*r_i
+A_A = A_A_T19*r_i
+A_P = A_P_T19*r_i
+             
+u_J = u_J_T19*r_u
+u_A = u_A_T19*r_u
+u_P = u_P_T19*r_u
+
+M_J = ((R_0*(w_J^(mb+mc_c*(T-T0))))*r_m) / w_J
+M_A = ((R_0*(w_A^(mb+mc_c*(T-T0))))*r_m) / w_A
+M_P = ((R_0p*(w_P^(mbp+mc_p*(T-T0))))*r_m) / w_P
+
+Ec_J = A_J*Rc
+Ec_A = A_A*Rc
+Ec_P_J = p*A_P*J
+Ec_P_A = (1-p)*A_P*A
+                          
+Int_J = Ec_J / (1 + (Ec_J/Imax_J))
+Int_A = Ec_A / (1 + (Ec_A/Imax_A))
+Int_P_J = Ec_P_J / (1 + ((Ec_P_J + Ec_P_A)/Imax_P)) % see e.q. 10.14 in de roos 2013
+Int_P_A = Ec_P_A / (1 + ((Ec_P_J + Ec_P_A)/Imax_P))
+
+Nu_J = s_c*Int_J - M_J
+Nu_A = s_c*Int_A - M_A
+Nu_P = s_p*(Int_P_J + Int_P_A) - M_P
+
+u_J_t = u_J + (Int_P_J/J)*P % Int_P_J already contains a J, so it's not mass-specific (but u_J is). And u_J_t is multiplied by J in the dynamic equation.
+u_A_t = u_A + (Int_P_A/A)*P
+                    
+if(Nu_J>0), Nu_p_J=Nu_J, else Nu_p_J=0, end
+if(Nu_P>0), Nu_P_p=Nu_P, else Nu_P_p=0, end % this is not strictly needed as they are not structured. It is added to be able to match the user function with the output from MATLAB in the command window.
+if(Nu_A>0), Nu_p_A=Nu_A, else Nu_p_A=0, end
+
+tolzero = 1.0E-12
+% the function below fixes the issue of u_J_t = Nu_J, for which one would divide by zero.
+if(Nu_J>0), matexp = 1 - u_J_t(1) / Nu_J(1); matswitch = heaviside(tolzero - matexp) * heaviside(matexp + tolzero); matnum = (1.0 - matswitch) * (Nu_J(1) - u_J_t(1)) + matswitch * u_J_t(1); matden = (1.0 - matswitch) * (1.0 - z ^ (1.0 - u_J_t(1) / Nu_J(1))) - matswitch * log(z); mat_rate = heaviside(Nu_J(1)) * matnum / matden, else mat_rate=0, end
+%mat_rate=(Nu_J-u_J_t) / (1-z ^ (1-u_J_t/Nu_J)), this is the non-heavyside way to implement
+%maturation rate within the ifelse
+
+Rc' = d*r_d*(K*r_K-Rc) - Int_J*J - Int_A*A
+J' = Nu_p_A*A + Nu_J*J - mat_rate*J - u_J_t*J
+A' = mat_rate*J + Nu_A*A - Nu_p_A*A - u_A_t*A
+P' = (Nu_P-u_P)*P
