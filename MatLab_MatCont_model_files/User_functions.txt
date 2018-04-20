@@ -1,0 +1,131 @@
+##---- In order to track non-state variables in MatCont, you need to specify user functions. These can *only* be made up of parameters and state variables. This means the expressions for e.g. maturation, becomes *extremely* long. This piece of text shows one way of doing that, by giving all the model functions in the right order and replace them with their full expression step by step.
+
+##---- Maturation rate
+##-- Below are the functions that need to be collapsed into a single expression in order to be used in a MatCont user function:
+
+mat_rate = (Nu_J-u_J_t) / (1-z ^ (1-u_J_t/Nu_J))
+
+Nu_J = s_c*Int_J - M_J
+
+Int_J = Ec_J / (1 + (Ec_J/Imax_J))
+
+Ec_J = A_J*Rc
+
+A_J = A_J_T19*r_i
+      
+Imax_J = ((Ia*w_J^(Ib+ic_c*(T-T0)))*r_i) / w_J
+
+M_J = ((R_0*(w_J^(mb+mc_c*(T-T0))))*r_m) / w_J
+
+r_m = exp(ME*(T-T0)/(k*T*T0))
+
+u_J_t = u_J + (Int_P_J/J)*P
+
+u_J = u_J_T19*r_u
+
+r_u = exp(uE*(T-T0)/(k*T*T0))
+
+Int_P_J = Ec_P_J / (1 + ((Ec_P_J + Ec_P_A)/Imax_P))
+
+Ec_P_J = p*A_P*J
+
+Ec_P_A = (1-p)*A_P*A
+
+Imax_P = ((Ia*w_P^(Ib+ic_p*(T-T0)))*r_i) / w_P
+
+A_P = A_P_T19*r_i
+
+r_i = exp(ME*ro*(T-T0)/(k*T*T0))
+
+
+##---- ga = gamma = maturation rate. Use replace to replace function with full expression in the order stated above
+
+ga = ((s_c*(((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc) / (1 + (((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc)/(((Ia*w_J^(Ib+ic_c*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_J)))) - (((R_0*(w_J^(mb+mc_c*(T-T0))))*(exp(ME*(T-T0)/(k*T*T0)))) / w_J))-((u_J_T19*(exp(uE*(T-T0)/(k*T*T0)))) + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) / (1 + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) + ((1-p)*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*A))/(((Ia*w_P^(Ib+ic_p*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_P))))/J)*P)) / (1-z ^ (1-((u_J_T19*(exp(uE*(T-T0)/(k*T*T0)))) + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) / (1 + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) + ((1-p)*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*A))/(((Ia*w_P^(Ib+ic_p*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_P))))/J)*P)/(s_c*(((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc) / (1 + (((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc)/(((Ia*w_J^(Ib+ic_c*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_J)))) - (((R_0*(w_J^(mb+mc_c*(T-T0))))*(exp(ME*(T-T0)/(k*T*T0)))) / w_J))))
+
+
+
+
+##---- Reproduction rate
+##-- Below are the functions that need to be collapsed into a single expression in order to be used in a MatCont user function:
+
+## Note this is equal to their net biomass production! (unless starving, but can't use ifelse in function. Therefore it's importand to check these curves)
+
+re = s_c*Int_A - M_A
+
+Int_A = Ec_A / (1 + (Ec_A/Imax_A))
+
+Ec_A = A_A*Rc
+
+Imax_A = ((Ia*w_A^(Ib+ic_c*(T-T0)))*r_i) / w_A
+
+A_A = A_A_T19*r_i
+
+r_i = exp(ME*ro*(T-T0)/(k*T*T0))
+
+M_A = ((R_0*(w_A^(mb+mc_c*(T-T0))))*r_m) / w_A
+
+r_m = exp(ME*(T-T0)/(k*T*T0))
+
+
+##---- re = reproduction = reproduction rate. Use replace to replace function with full expression in the order stated above
+
+re = s_c*(((A_A_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc) / (1 + (((A_A_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc)/(((Ia*w_A^(Ib+ic_c*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_A)))) - (((R_0*(w_A^(mb+mc_c*(T-T0))))*(exp(ME*(T-T0)/(k*T*T0)))) / w_A)
+
+
+
+
+##---- Juvenile net biomass production
+##-- Below are the functions that need to be collapsed into a single expression in order to be used in a MatCont user function:
+
+nj = s_c*Int_J - M_J
+
+Int_J = Ec_J / (1 + (Ec_J/Imax_J))
+
+Ec_J = A_J*Rc
+
+Imax_J = ((Ia*w_J^(Ib+ic_c*(T-T0)))*r_i) / w_J
+
+A_J = A_J_T19*r_i
+
+r_i = exp(ME*ro*(T-T0)/(k*T*T0))
+
+M_J = ((R_0*(w_J^(mb+mc_c*(T-T0))))*r_m) / w_J
+
+r_m = exp(ME*(T-T0)/(k*T*T0))
+
+##---- nj = Net biomass production for juveniles. Use replace to replace function with full expression in the order stated above
+
+nj = s_c*(((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc) / (1 + (((A_J_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*Rc)/(((Ia*w_J^(Ib+ic_c*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_J)))) - (((R_0*(w_J^(mb+mc_c*(T-T0))))*(exp(ME*(T-T0)/(k*T*T0)))) / w_J)
+
+
+
+##---- Predator net biomass production
+##-- Below are the functions that need to be collapsed into a single expression in order to be used in a MatCont user function:
+
+np = s_p*(Int_P_J + Int_P_A) - M_P
+
+Int_P_J = Ec_P_J / (1 + ((Ec_P_J + Ec_P_A)/Imax_P))
+
+Int_P_A = Ec_P_A / (1 + ((Ec_P_J + Ec_P_A)/Imax_P))
+
+Ec_P_J = p*A_P*J
+
+Ec_P_A = (1-p)*A_P*A
+
+A_P = A_P_T19*r_i
+
+Imax_P = ((Ia*w_P^(Ib+ic_p*(T-T0)))*r_i) / w_P
+
+r_i = exp(ME*ro*(T-T0)/(k*T*T0))
+
+M_P = ((R_0p*(w_P^(mbp+mc_p*(T-T0))))*r_m) / w_P
+
+r_m = exp(ME*(T-T0)/(k*T*T0))
+
+
+##---- np = Net biomass production for predators. Use replace to replace function with full expression in the order stated above
+
+np = s_p*(((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) / (1 + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) + ((1-p)*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*A))/(((Ia*w_P^(Ib+ic_p*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_P)))) + (((1-p)*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*A) / (1 + (((p*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*J) + ((1-p)*(A_P_T19*(exp(ME*ro*(T-T0)/(k*T*T0))))*A))/(((Ia*w_P^(Ib+ic_p*(T-T0)))*(exp(ME*ro*(T-T0)/(k*T*T0)))) / w_P))))) - (((R_0p*(w_P^(mbp+mc_p*(T-T0))))*(exp(ME*(T-T0)/(k*T*T0)))) / w_P)
+
+
+
