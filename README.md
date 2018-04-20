@@ -1,11 +1,11 @@
 # Temperature_Allee
 Data and files to reproduce the analysis in Lindmark et al 2018
 
-%---- To reproduce the figures in Lindmark et al (2018) based on the simulated data, please see the folder "R" which uses already simulated and saved data, stored in folder "Data"
-%---- To see how the model is implemented in matcont, see "MatLab_MatCont_model_files", "msII_Paper_MatCont_implementation.txt"
-%---- To open the model in MatCont GUI and re-export or check simulated curves, follow the instructions below.
+#---- To reproduce the figures in Lindmark et al (2018) based on the simulated data, please see the folder "R" which uses already simulated and saved data, stored in folder "Data"
+#---- To see how the model is implemented in matcont, see "MatLab_MatCont_model_files", "msII_Paper_MatCont_implementation.txt"
+#---- To open the model in MatCont GUI and re-export or check simulated curves, follow the instructions below.
 
-%-- Navigate to MatLab_MatCont_model_files:
+#-- Navigate to MatLab_MatCont_model_files:
 The zip-file contains files for opening the model in MatCont GUI to redo analysis or re-export data used for plotting (see Data and R folders):
 
 The zip-file contains the following:
