@@ -11,7 +11,7 @@ MatLab_Mat_Cont_model_files: contains model files and text files for implementin
 ... based on the simulated data, please see the folder "R" which uses already simulated and saved data, stored in folder "Data"
 
 ### see how the model is implemented in matcont
-... see "MatLab_MatCont_model_files"/"msII_Paper_MatCont_implementation.txt"
+... see "MatLab_MatCont_model_files", see "msII_Paper_MatCont_implementation.txt" and "User_functions.txt" (which are needed to track non-state variables in MatCont, such as maturation or net biomass production)
 
 ### open the model in MatCont GUI and re-export or check simulated curves
 ... follow the instructions below.
