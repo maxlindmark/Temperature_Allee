@@ -1,5 +1,10 @@
 # Temperature_Allee
-Data and files to reproduce the analysis in Lindmark et al 2018
+Data and MatCont-files to reproduce the main analyses in Lindmark et al (2018).
+
+Data: contains simulated data used for creating figures
+R: scripts for producing figures based on already simulated data
+MatLab_Mat_Cont_model_files: contains model files and text files for implementing the model in MatCont
+
 
 ## If you want to:
 ### reproduce the figures 
