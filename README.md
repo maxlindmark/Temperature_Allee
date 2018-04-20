@@ -29,8 +29,8 @@ Install MatLab and MatCont (https://sourceforge.net/projects/matcont/)
 You will need the student version or any version that contains the symbolic package. This is needed to use the heavyside function that is implementeted in the maturation function; see text file "msII_Paper_MatCont_implementation".
 
 1. To open the model, to view the computed equilibrium curves and to use the matlab code (file: msII_Paper_export_data_MATLAB) to export data as .csv do like this: 
-2. Navigate to the "systems" folder in your MATLAB directory (MATLAB -> matcont -> systems) 
+2. Navigate to the "Systems" folder in your MATLAB directory (MATLAB -> "matcont" -> Systems) 
 3. Unzip the file "MatCont_files"
-4. Drag the unzipped contents (1) "msII_Paper" folder, (2) the msII_Paper.mat and (3) the msII_Paper.m files to the "systems" folder in your MatLab folder, see above
+4. Drag the unzipped contents (1) "msII_Paper" folder, (2) the msII_Paper.mat and (3) the msII_Paper.m files to the "Systems" folder in your MatLab folder, see above
 5. Open MatCont by typing matcont in the MATLAB command window.
-6. Now you can open all the diagrams and view them in matlab or use the MatLab code in the "MatLab_MatCont_model_files" folder to export the diagrams as .csv files locally (*Note, change file path!)
+6. Now you can open all the diagrams and view them in matlab or use the MatLab code in the file "MatLab_MatCont_model_files/msII_Paper_exporting_curves" to export the diagrams as .csv files locally (*Note, change file path!)
