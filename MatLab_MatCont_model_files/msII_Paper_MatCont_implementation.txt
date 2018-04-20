@@ -1,4 +1,5 @@
-% This is what goes into matcont GUI when specifying a new system rather than opening the current one (copy paste the below text). 
+% This is what goes into matcont GUI when specifying a new system rather than opening the current one, see "Read_me". Copy paste the below text and insert in MatCont GUI (this is not a script). See Table S2 for parameter derivation.
+
 %------------ Model Name ------------%
 msII_Paper
 
@@ -16,7 +17,7 @@ z,w_J,w_A,w_P,T,T0,k,s_c,s_p,p,d,rE,KE,K,ro,mc_c,mc_p,mb,R_0,mbp,R_0p,ME,Ia,Ib,i
 z = 0.00025
 w_J = 3.9 
 w_A = 32.4
-w_P = 642.6 % see R script pisc attack rate ms II
+w_P = 642.6 
 
 % general parameters
 T = 292.15
