@@ -12,7 +12,7 @@ library(RCurl)
 library(grid)
 library(png)
 
-#---- Get the bifurcation continuations from github
+#---- Get the continuations of bifurcations from github
 # c=0, EK=0. *No branch point for this scenario within the selected parameter range!
 BPc0EK0 <- read.csv(text=getURL("https://raw.githubusercontent.com/maxlindmark/Temperature_Allee/master/Data/Rmax_temp_dyn_str/Rmax_temp_dyn_str_c0EK0_BP.csv"), header=FALSE)
 BPc0EK0$c_c <- 0
