@@ -94,7 +94,6 @@ xmin_p4 <- max(subset(dat_ty, scen == 4 & bif == "BP")$tc)
 xmin_p3_lp <- max(subset(dat_ty, scen == 3 & bif == "LP" & Rmax < 2.6)$tc)
 xmin_p4_lp <- max(subset(dat_ty, scen == 4 & bif == "LP" & Rmax < 2.6)$tc)
 
-
 #---- custom2-function to plot png's in specific facets instead of all  
 # https://stackoverflow.com/questions/44688623/adding-custom-images-to-ggplot-facets
 annotation_custom2 <- 
