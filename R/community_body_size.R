@@ -228,11 +228,8 @@ dfs2$no_spec <- 3
 
 w_tresh <- exp(4) # This value comes from the last two plots (which are on log-scale, hence exp()), where it is clear that the stable P-C-R system never reaches below this mean size and the C-R system never goes above it. An alternative would be to calculate the mean weighted biomass for each scenarion within the unstable region, but that is not needed here becuase the difference is so large.
 dfs2$no_spec <- ifelse(dfs2$scen == 2 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
-
 dfs2$no_spec <- ifelse(dfs2$scen == 4 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
-                                      
-dfs2$no_spec <- ifelse(dfs2$scen == 6 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec) 
-
+dfs2$no_spec <- ifelse(dfs2$scen == 6 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 dfs2$no_spec <- ifelse(dfs2$scen == 8 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 
 # Also need to find no_spec for p=05
