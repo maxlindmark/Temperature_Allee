@@ -229,7 +229,7 @@ dfs2$no_spec <- 3
 w_tresh <- exp(4) # This value comes from the last two plots (which are on log-scale, hence exp()), where it is clear that the stable P-C-R system never reaches below this mean size and the C-R system never goes above it. An alternative would be to calculate the mean weighted biomass for each scenarion within the unstable region, but that is not needed here becuase the difference is so large.
 dfs2$no_spec <- ifelse(dfs2$scen == 2 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 dfs2$no_spec <- ifelse(dfs2$scen == 4 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
-dfs2$no_spec <- ifelse(dfs2$scen == 6 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
+dfs2$no_spec <- ifelse(dfs2$scen == 6 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec) 
 dfs2$no_spec <- ifelse(dfs2$scen == 8 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 
 # Also need to find no_spec for p=05
@@ -283,9 +283,22 @@ dfs2 %>%
               strip.text=element_text(size=15))
                           
 # Looks ok but difficult to see the different temperature scenarios
-                 
+
 ##---- Plot for ms
-pal <- c("#ca0020","#f4a582","#92c5de","#0571b0")
+# Create dataframe to hold texts for subplots A-D, include all levels for grouping to facet_grid (sub-panel structure)
+dat_text <- data.frame(label = c("A", "B", "C", "D"),
+                       ek_group2 = c("paste(italic(\"E\"[Rmax]), \"=0\")",
+                                     "paste(italic(\"E\"[Rmax]), \"=0\")",
+                                     "paste(italic(\"E\"[Rmax]), \"=-0.43\")",
+                                     "paste(italic(\"E\"[Rmax]), \"=-0.43\")"),
+                       p2 = c("paste(italic(p), \"=0.5\")",
+                              "paste(italic(p), \"=1\")",
+                              "paste(italic(p), \"=0.5\")",
+                              "paste(italic(p), \"=1\")"),
+                       c_group = 0,
+                       no_spec = 2)
+                 
+pal <- c("#ca0020","#f4a582","#92c5de","#0571b0") # From colorbrewer
 
 dfs2 %>% 
      filter(tc > 13 & tc < 36 & state %in% c(1,2)) %>%
@@ -329,7 +342,8 @@ dfs2 %>%
                      linetype = guide_legend(override.aes = list(alpha = 1, size=0.6)), size = FALSE) +
 
               scale_x_continuous(breaks = round(seq(min(dfs2$tc), max(dfs2$tc), by = 4),1)) +
-              scale_y_continuous(breaks = seq(3, 6.5, by = 0.5)) +
+              scale_y_continuous(breaks = seq(3, 6.45, by = 0.5)) +
+              geom_text(data=dat_text,aes(x=36, y=6.5, label=label), size=6, fontface="bold", colour="black") +
                                
               theme_bw() + 
               theme(aspect.ratio=1,
