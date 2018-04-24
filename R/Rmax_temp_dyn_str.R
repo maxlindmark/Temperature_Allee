@@ -104,7 +104,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data){ layer(d
                                           ymin = ymin, ymax = ymax))}
  
 #---- Full plot
-pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f")
+pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f") # This palette is from colorbrewer
 
 #-- Create new variables for plotting
 dat_ty$ERmax2 <- factor(dat_ty$ERmax)
@@ -141,8 +141,6 @@ dat_text <- data.frame(label = c("A", "B", "C", "D"),
                                "paste(italic(\"c\"), \"=0.005\")",
                                "paste(italic(\"c\"), \"=0.005\")"),
                        bif = 2)
-
-
 
 # Plot for ms
 ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
@@ -183,5 +181,3 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        
        annotation_custom2(rasterGrob(mypng_2spec, interpolate=TRUE), xmin=31.7, 
        xmax=34.89, ymin=1.3, ymax=1.6, data= subset(dat_ty2, scen > 1))
-       
- 
