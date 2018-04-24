@@ -18,7 +18,7 @@
 % Orbit is named o_def
 % p=1
 load Systems/msII_Paper/diagram/Temp_Allee(1).mat 
-x1 = x
+x1 = x % The x-matrix contains the state variables, they are in the same order as specified in the model definition (called coordinates in matcont). See the line below for the scatter plot, and you will see just that. If you want to export user-defined user functions, they are stored in a matrix called "h" (note: this is currently not implemented here as it is not needed for the main figures, please send me an e-mail if you need help). 
 
 load Systems/msII_Paper/diagram/Temp_Allee(2).mat 
 x2 = x
