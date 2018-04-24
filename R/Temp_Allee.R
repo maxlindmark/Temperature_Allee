@@ -263,7 +263,7 @@ plot(-1,
      axes=F, 
      xaxs="i", yaxs="i")
 rect(bp, 0, max(x.seq), 13, border = NA, density=11, col="grey80")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.1))
+rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.3))
 
 lines(J~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
