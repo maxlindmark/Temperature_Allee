@@ -130,6 +130,20 @@ fws$tc <- 16
 
 dat_ty2 <- rbind(dat_ty, fws)
 
+# Create dataframe to hold texts for subplots A-D, include all levels for grouping to facet_grid (sub-panel structure)
+dat_text <- data.frame(label =  c("A", "B", "C", "D"),
+                       ERmax2 = c("paste(italic(\"E\"[Rmax]), \"=0\")",
+                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")",
+                                  "paste(italic(\"E\"[Rmax]), \"=0\")",
+                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")"),
+                       c_c =    c("paste(italic(\"c\"), \"=0\")",
+                                  "paste(italic(\"c\"), \"=0\")",
+                                  "paste(italic(\"c\"), \"=0.005\")",
+                                  "paste(italic(\"c\"), \"=0.005\")"),
+                       bif =      2)
+
+
+
 # Plot for ms
 ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        scale_x_continuous(expand = c(0, 0)) +
@@ -163,6 +177,7 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
              strip.background = element_blank(),
              aspect.ratio = 1) +
        
+       geom_text(data=dat_text,aes(x=34, y=2.53, label=label), size=6, fontface="bold") +
        annotation_raster(mypng_3spec,
        ymin=2.1,ymax=2.57,xmin=15.4,xmax=21.7) + 
        
