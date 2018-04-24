@@ -135,6 +135,8 @@ setwd("//storage-og.slu.se/home$/mxli0002/Desktop")
 
 #pdf("SampleGraph.pdf", useDingbats=FALSE)
 
+pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f") # From colorbrewer
+
 op <- par(mfrow=c(2,4), 
           cex.axis=1.4, 
           mar=(c(0, 1.2, 0, 1.2)),
@@ -143,27 +145,27 @@ op <- par(mfrow=c(2,4),
           oma=c(15, 4, 14, 2),
           pty="s")
 
-#x.seq <-  seq(from=14, to=34, by=4)# c(12, 23, 34)          
 x.seq <-  seq(from=6, to=36, by=6)# c(12, 23, 34)          
 x.seq2 <-  seq(from=6, to=36, by=3)# c(12, 23, 34)          
 
 ##---- p=0.5 | R
 plot(-1,
      xlim=c(min(x.seq), max(x.seq)),
-     ylim=c(-7,2),
+     ylim=c(0.001,10),
      ylab="", xlab="", 
      axes=F, 
-     xaxs="i", yaxs="i")
-rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
-lines(log(R)~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
-points(log(max_b)~tc, pch=16, cex=0.7, 
+     xaxs="i", yaxs="i",
+     log="y")
+rect(0, 0.001, hopf_t, 10, border = NA, col= "grey90")
+lines(R~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
+points(max_b~tc, pch=16, cex=0.7, 
 data=subset(dfs2, state_v == "R")) # add limit cycles min and max
-points(log(min_b)~tc, pch=16, cex=0.7, 
+points(min_b~tc, pch=16, cex=0.7, 
 data=subset(dfs2, state_v == "R")) # add limit cycles min and max
 
 axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
-axis(side=2, at=c(-7,-4,-1,2), labels=round(exp(c(-7,-4,-1,2)), digits=2), cex.axis=1, tck=-0.03)
+axis(side=2, at=c(10,1,0.1,0.01,0.001,0.001), labels=T, cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("A"), "   Resource")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=0.5 | J
@@ -225,28 +227,28 @@ axis(side=2, at=c(0, 3, 6, 9), labels=T, cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("D"), "   Predator")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=1 | R *Note that the data-subset for lines is based on adults, since 1 column=1 state variable
-
 plot(-1, 
      type="l",
      xlim=c(min(x.seq), max(x.seq)),
-     ylim=c(-7, 1),
+     ylim=c(0.001,10),
      ylab="", xlab="", 
      axes=F, 
-     xaxs="i", yaxs="i")
-rect(bp, -10, max(x.seq), 13, border = NA, density=11, col="grey80")
-rect(bp, -10, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.3))
+     xaxs="i", yaxs="i",
+     log="y")
+rect(bp, 0.001, lp, 10, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+rect(lp, 0.001, max(x.seq), 10, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
-lines(log(R)~tc, col="black", lwd=1.7, 
+lines(R~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
-lines(log(R)~tc, col="black", lwd=1.7, lty=2,  
+lines(R~tc, col="black", lwd=1.7, lty=2,  
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc>=bp))
-lines(log(R)~tc, col="black", lwd=1.9,
+lines(R~tc, col="black", lwd=1.9,
       data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc>=bp))
-lines(log(R)~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
+lines(R~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
-axis(side=2, at=c(-7,-5,-3,-1,1), labels=round(exp(c(-7,-5,-3,-1,1)), digits=2), cex.axis=1, tck=-0.03)
+axis(side=2, at=c(10,1,0.1,0.01,0.001,0.001), cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("E"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=1 | J
@@ -257,8 +259,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, max(x.seq), 13, border = NA, density=11, col="grey80")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.3))
+rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(J~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -282,8 +284,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, max(x.seq), 13, border = NA, density=11, col="grey80")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.3))
+rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(A~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -308,8 +310,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, max(x.seq), 13, border = NA, density=11, col="grey80")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.3))
+rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(P~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -334,3 +336,4 @@ mtext(expression(paste(italic(p),"=0.5")), side=4, outer=T, line=-0.3, adj=0.8, 
 mtext(expression(paste(italic(p),"=1")), side=4, outer=T, line=-0.3, adj=0.2, cex=1, las=0)
 
 #dev.off()
+
