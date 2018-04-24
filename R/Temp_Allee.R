@@ -2,8 +2,6 @@
 ## 2018.01.09 - Script for reading data and producing the figure: Continuation over temperature for two different p-values
 ####
 
-#---- Continuation over temperature for two different p-values
-
 #---- Clear the workspace
 rm(list=ls(all=TRUE))
 
@@ -152,7 +150,6 @@ x.seq2 <-  seq(from=6, to=36, by=3)# c(12, 23, 34)
 ##---- p=0.5 | R
 plot(-1,
      xlim=c(min(x.seq), max(x.seq)),
-#     ylim=c(0, 0.025), # these boundaries fit with xmin=14
      ylim=c(-7,2),
      ylab="", xlab="", 
      axes=F, 
@@ -166,9 +163,7 @@ data=subset(dfs2, state_v == "R")) # add limit cycles min and max
 
 axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
-#axis(side=2, at=c(0,0.025), labels=F)
-#axis(side=2, at=c(0.005, 0.015, 0.025), labels=T, cex.axis=1, tck=-0.03)
-axis(side=2, at=c(-7,-4,-1,2), labels=T, cex.axis=1, tck=-0.03)
+axis(side=2, at=c(-7,-4,-1,2), labels=round(exp(c(-7,-4,-1,2)), digits=2), cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("A"), "   Resource")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=0.5 | J
@@ -214,7 +209,6 @@ mtext(expression(paste(bold("C"), "   Adult")), side=1, outer=F, line=-10.5, adj
 ##---- p=0.5 | P
 plot(-1,
      xlim=c(min(x.seq), max(x.seq)),
-#     ylim=c(0, 4),
      ylim=c(0, 9),     
      ylab="", xlab="", 
      axes=F, 
@@ -231,6 +225,7 @@ axis(side=2, at=c(0, 3, 6, 9), labels=T, cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("D"), "   Predator")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=1 | R *Note that the data-subset for lines is based on adults, since 1 column=1 state variable
+
 plot(-1, 
      type="l",
      xlim=c(min(x.seq), max(x.seq)),
@@ -246,12 +241,12 @@ lines(log(R)~tc, col="black", lwd=1.7,
 lines(log(R)~tc, col="black", lwd=1.7, lty=2,  
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc>=bp))
 lines(log(R)~tc, col="black", lwd=1.9,
-      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc<=lp & tc>=bp))
+      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc>=bp))
 lines(log(R)~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
-axis(side=2, at=c(-7,-5,-3,-1,1), labels=T, cex.axis=1, tck=-0.03)
+axis(side=2, at=c(-7,-5,-3,-1,1), labels=round(exp(c(-7,-5,-3,-1,1)), digits=2), cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("E"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
 ##---- p=1 | J
@@ -270,7 +265,7 @@ lines(J~tc, col="black", lwd=1.7,
 lines(J~tc, col="black", lwd=1.7, lty=2,  
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc>=bp))
 lines(J~tc, col="black", lwd=1.9,
-      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc<=lp & tc>=bp))
+      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc>=bp))
 lines(J~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
@@ -295,7 +290,7 @@ lines(A~tc, col="black", lwd=1.7,
 lines(A~tc, col="black", lwd=1.7, lty=2,  
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc>=bp))
 lines(A~tc, col="black", lwd=1.9,
-      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc<=lp & tc>=bp))
+      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc>=bp))
 lines(A~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
@@ -309,7 +304,6 @@ mtext(expression(paste(bold("G"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 plot(-1, 
      type="l", 
      xlim=c(min(x.seq), max(x.seq)),
-#     ylim=c(0, 4),
      ylim=c(0, 5),
      ylab="", xlab="", 
      axes=F, 
@@ -322,7 +316,7 @@ lines(P~tc, col="black", lwd=1.7,
 lines(P~tc, col="black", lwd=1.7, lty=2,  
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc>=bp))
 lines(P~tc, col="black", lwd=1.9,
-      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc<=lp & tc>=bp))
+      data=subset(dat_ty, p==1 & stability==1 & P<pred_lp & tc>=bp))
 lines(P~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
@@ -331,7 +325,7 @@ axis(side=2, at=c(0, 4), labels=F)
 axis(side=2, at=c(0, 1, 2, 3, 4, 5), labels=T, cex.axis=1, tck=-0.03)
 mtext(expression(paste(bold("H"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
 
-mtext(expression(paste("Biomass density ", "[", g ~m^{-3}, "]")), las=3, side=2, outer=T, line=1, adj=0.5, cex=1)
+mtext(expression(paste("Biomass density ", "[", g ~m^{-3}, "]")), las=3, side=2, outer=T, line=2, adj=0.5, cex=1)
 
 mtext(text=expression(paste("Temperature [", degree*C, "]")), 
       side=1, outer=T, line=1.5, adj=0.505, cex=1, las=1)
