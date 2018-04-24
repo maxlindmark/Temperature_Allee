@@ -156,7 +156,7 @@ plot(-1,
      axes=F, 
      xaxs="i", yaxs="i",
      log="y")
-rect(0, 0.001, hopf_t, 10, border = NA, col= "grey90")
+#rect(0, 0.001, hopf_t, 10, border = NA, col= "grey90")
 lines(R~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
 points(max_b~tc, pch=16, cex=0.7, 
 data=subset(dfs2, state_v == "R")) # add limit cycles min and max
@@ -175,7 +175,7 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
+#rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
 lines(J~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
 points(max_b~tc, pch=16, cex=0.7, 
 data=subset(dfs2, state_v == "J")) # add limit cycles min and max
@@ -195,7 +195,7 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
+#rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
 lines(A~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
 points(max_b~tc, pch=16, cex=0.7, 
 data=subset(dfs2, state_v == "A")) # add limit cycles min and max
@@ -215,7 +215,7 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
+#rect(0, -10, hopf_t, 20, border = NA, col= "grey90")
 lines(P~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
 points(max_b~tc, pch=16, cex=0.7, data=subset(dfs2, state_v == "P")) # add limit cycles min and max
 points(min_b~tc, pch=16, cex=0.7, data=subset(dfs2, state_v == "P")) # add limit cycles min and max
@@ -235,8 +235,8 @@ plot(-1,
      axes=F, 
      xaxs="i", yaxs="i",
      log="y")
-rect(bp, 0.001, lp, 10, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
-rect(lp, 0.001, max(x.seq), 10, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
+#rect(bp, 0.001, lp, 10, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+#rect(lp, 0.001, max(x.seq), 10, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(R~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -259,8 +259,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
-rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
+#rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+#rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(J~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -284,8 +284,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
-rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
+#rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+#rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(A~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
@@ -310,8 +310,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i")
-rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
-rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
+#rect(bp, 0, lp, 13, border = NA, col= adjustcolor("#fdcc8a", alpha.f = 0.8))
+#rect(lp, 0, max(x.seq), 13, border = NA, col= adjustcolor("#fc8d59", alpha.f = 0.8))
 
 lines(P~tc, col="black", lwd=1.7, 
       data=subset(dat_ty, p==1 & stability==1 & P>pred_lp & tc<=bp))
