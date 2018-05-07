@@ -9,7 +9,6 @@ rm(list=ls(all=TRUE))
 library(tidyverse)
 library(gridExtra)
 library(RCurl)
-library(grid)
 library(png)
 
 #---- Get the continuations of bifurcations from github
@@ -148,7 +147,7 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        scale_y_continuous(expand = c(0, 0)) +
        coord_cartesian(xlim=c(15,35), ylim=c(1.3,2.6)) +
        scale_fill_manual(values = c(pal[1], pal[2], pal[3]), 
-       labels=c("P-C-R", "Bistable:\nP-C-R/C-R", "C-R"), guides(name="Community \nComposition")) +
+       labels=c("P-C-R", "Bistable:\nP-C-R/C-R", "C-R"), guides(name="Community \ncomposition")) +
 
        facet_grid(c_c ~ ERmax2, labeller= label_parsed) +
        
@@ -168,12 +167,14 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        theme(panel.spacing = unit(0.9, "lines"),
              panel.border = element_rect(colour="black", fill="NA"),
              legend.title = element_text(size=18),
-             legend.text = element_text(size=15),
+             legend.text = element_text(size=15, face = "italic"),
              axis.text = element_text(size=13), 
              axis.title = element_text(size=18),
              strip.text = element_text(size=18),      
              strip.background = element_blank(),
              aspect.ratio = 1) +
+             
+             
        
        geom_text(data=dat_text,aes(x=34, y=2.53, label=label), size=6, fontface="bold") +
        annotation_raster(mypng_3spec,
@@ -181,3 +182,5 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        
        annotation_custom2(rasterGrob(mypng_2spec, interpolate=TRUE), xmin=31.7, 
        xmax=34.89, ymin=1.3, ymax=1.6, data= subset(dat_ty2, scen > 1))
+         
+       
