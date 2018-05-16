@@ -6,10 +6,11 @@
 rm(list=ls(all=TRUE))
 
 #---- Load libraries (install first if needed)
-library(tidyverse)
+library(tidyverse) 
 library(gridExtra)
 library(RCurl)
 library(png)
+library(grid)
 
 #---- Get the continuations of bifurcations from github
 # c=0, EK=0. *No branch point for this scenario within the selected parameter range!
@@ -106,9 +107,13 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data){ layer(d
 pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f") # This palette is from colorbrewer
 
 #-- Create new variables for plotting
+#dat_ty$ERmax2 <- factor(dat_ty$ERmax)
+#levels(dat_ty$ERmax2) = c("0" = expression(paste(italic("E"[Rmax]),"=0")),
+#                          "0.43" = expression(paste(italic("E"[Rmax]),"=-0.43")))
+
 dat_ty$ERmax2 <- factor(dat_ty$ERmax)
-levels(dat_ty$ERmax2) = c("0" = expression(paste(italic("E"[Rmax]),"=0")),
-                          "0.43" = expression(paste(italic("E"[Rmax]),"=-0.43")))
+levels(dat_ty$ERmax2) = c("0" = expression(paste(italic("E"[R[max]]),"=0")),
+                          "0.43" = expression(paste(italic("E"[R[max]]),"=-0.43")))
 
 
 dat_ty$c_c <- factor(dat_ty$c_c)
@@ -130,16 +135,31 @@ fws$tc <- 16
 dat_ty2 <- rbind(dat_ty, fws)
 
 # Create dataframe to hold texts for subplots A-D, include all levels for grouping to facet_grid (sub-panel structure)
+#dat_text <- data.frame(label = c("A", "B", "C", "D"),
+#                       ERmax2 = c("paste(italic(\"E\"[Rmax]), \"=0\")",
+#                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")",
+#                                  "paste(italic(\"E\"[Rmax]), \"=0\")",
+#                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")"),
+#                       c_c = c("paste(italic(\"c\"), \"=0\")",
+#                               "paste(italic(\"c\"), \"=0\")",
+#                               "paste(italic(\"c\"), \"=0.005\")",
+#                               "paste(italic(\"c\"), \"=0.005\")"),
+#                       bif = 2)
+
+
+
 dat_text <- data.frame(label = c("A", "B", "C", "D"),
-                       ERmax2 = c("paste(italic(\"E\"[Rmax]), \"=0\")",
-                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")",
-                                  "paste(italic(\"E\"[Rmax]), \"=0\")",
-                                  "paste(italic(\"E\"[Rmax]), \"=-0.43\")"),
+                       ERmax2 = c("paste(italic(\"E\"[R[max]]), \"=0\")",
+                                  "paste(italic(\"E\"[R[max]]), \"=-0.43\")",
+                                  "paste(italic(\"E\"[R[max]]), \"=0\")",
+                                  "paste(italic(\"E\"[R[max]]), \"=-0.43\")"),
                        c_c = c("paste(italic(\"c\"), \"=0\")",
                                "paste(italic(\"c\"), \"=0\")",
                                "paste(italic(\"c\"), \"=0.005\")",
                                "paste(italic(\"c\"), \"=0.005\")"),
                        bif = 2)
+
+
 
 # Plot for ms
 ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
@@ -173,9 +193,7 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
              strip.text = element_text(size=18),      
              strip.background = element_blank(),
              aspect.ratio = 1) +
-             
-             
-       
+                    
        geom_text(data=dat_text,aes(x=34, y=2.53, label=label), size=6, fontface="bold") +
        annotation_raster(mypng_3spec,
        ymin=2.1,ymax=2.57,xmin=15.4,xmax=21.7) + 
@@ -183,4 +201,4 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        annotation_custom2(rasterGrob(mypng_2spec, interpolate=TRUE), xmin=31.7, 
        xmax=34.89, ymin=1.3, ymax=1.6, data= subset(dat_ty2, scen > 1))
          
-       
+      
