@@ -247,8 +247,8 @@ pal3 <- c("#ca0020","#f4a582","#92c5de","#0571b0")
 
 ##-- A bit difficult to see curves above. Here I use facet_grid instead:
 dfs2$ek_group2 <- as.factor(dfs2$ek_group)
-levels(dfs2$ek_group2)=c("0" = expression(paste(italic("E"[Rmax]),"=0")),
-                         "0.43" = expression(paste(italic("E"[Rmax]),"=-0.43")))
+levels(dfs2$ek_group2)=c("0" = expression(paste(italic("E"[R[max]]),"=0")),
+                         "0.43" = expression(paste(italic("E"[R[max]]),"=-0.43")))
 
 dfs2$c_group2 <- as.factor(dfs2$c_group)
 levels(dfs2$c_group2)=c("0"=expression(paste(italic(c),"=0")),
@@ -287,10 +287,10 @@ dfs2 %>%
 ##---- Plot for ms
 # Create dataframe to hold texts for subplots A-D, include all levels for grouping to facet_grid (sub-panel structure)
 dat_text <- data.frame(label = c("A", "B", "C", "D"),
-                       ek_group2 = c("paste(italic(\"E\"[Rmax]), \"=0\")",
-                                     "paste(italic(\"E\"[Rmax]), \"=0\")",
-                                     "paste(italic(\"E\"[Rmax]), \"=-0.43\")",
-                                     "paste(italic(\"E\"[Rmax]), \"=-0.43\")"),
+                       ek_group2 = c("paste(italic(\"E\"[R[max]]), \"=0\")",
+                                     "paste(italic(\"E\"[R[max]]), \"=0\")",
+                                     "paste(italic(\"E\"[R[max]]), \"=-0.43\")",
+                                     "paste(italic(\"E\"[R[max]]), \"=-0.43\")"),
                        p2 = c("paste(italic(p), \"=0.5\")",
                               "paste(italic(p), \"=1\")",
                               "paste(italic(p), \"=0.5\")",
