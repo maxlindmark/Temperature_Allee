@@ -8,7 +8,16 @@ MatLab_Mat_Cont_model_files: contains model files and text files for implementin
 
 ## If you want to:
 ### reproduce the figures 
-... based on the simulated data, please see the folder "R" which uses already simulated and saved data, stored in folder "Data"
+... based on the simulated data, please see the folder "R" which uses already simulated and saved data, stored in folder "Data". The packages used are:
+
+tidyverse 1.2.1 --
+v ggplot2 2.2.1     v purrr   0.2.4
+v tibble  1.4.2     v dplyr   0.7.4
+v tidyr   0.8.0     v stringr 1.3.1
+v readr   1.1.1     v forcats 0.3.0
+
+RCurl_1.95-4.10
+gridExtra_2.3
 
 ### see how the model is implemented in matcont
 ... see "MatLab_MatCont_model_files", see "msII_Paper_MatCont_implementation.txt" and "User_functions.txt" (which are needed to track non-state variables in MatCont, such as maturation or net biomass production)
