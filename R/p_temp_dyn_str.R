@@ -31,6 +31,12 @@ BP_cusp <- subset(BP, V6 < min(LP$V6))
                                  
 pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f")
 
+ggplot(BP, aes(tc, V6)) + geom_line() + xlim(10, 37) + ylim(0.5, 1)
+ggplot(H, aes(tc, V6)) + geom_point() + xlim(10, 37) + ylim(0.5, 1)
+ggplot(LP, aes(tc, V6)) + geom_point() + xlim(10, 37) + ylim(0.5, 1)
+
+plot(BP$V6~BP$V5)
+
 #library(png)
 #mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/Desktop/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec.png")
                   
@@ -40,10 +46,10 @@ ggplot(data=BP, aes(tc, V6)) +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) +
   
-  geom_ribbon(data=BP,      aes(x=tc, ymax=1, ymin=V6), fill=pal[2], col="NA") + 
-  geom_ribbon(data=LP,      aes(x=tc, ymax=1, ymin=V6), fill=pal[3], col="NA") + 
+  geom_ribbon(data=BP, aes(x=tc, ymax=1, ymin=V6), fill=pal[2], col="NA") + 
+  geom_ribbon(data=LP, aes(x=tc, ymax=1, ymin=V6), fill=pal[3], col="NA") + 
   geom_ribbon(data=BP_cusp, aes(x=tc, ymax=1, ymin=V6), fill=pal[3], col="NA") + 
-  geom_polygon(data=H,      aes(x=tc, y=V6), fill="grey80", col="NA") + 
+  geom_polygon(data=H, aes(x=tc, y=V6), fill="grey80", col="NA") + 
 
   annotate("text", y = c(0.97, 0.97, 0.77, 0.7), x = c(29, 35.2, 13, 25), label = c("Bistability", "C-R", "Limit\ncycles", "Stable fixed points"), size=9, fontface=3) +
  
