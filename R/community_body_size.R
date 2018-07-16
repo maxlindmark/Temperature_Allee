@@ -1,5 +1,5 @@
 ####
-## 2018.01.09 - Script for reading data and producing the figure: Continuation of bifurcation points (limit point and branch point) in two parameter space; temperature and Rmax, for different c and ERmax values
+## 2018.01.09 - Script for reading data and producing the figure: Biomass weighted mean body of the community, given variation in p, ERmax and c
 ####
 
 #---- *Warning* This is a long and pretty messy script because I have several temperature scenarios and need to calculate stability, structure, mean size etc., for each one of them, and separating them already in matcont is not an option.
