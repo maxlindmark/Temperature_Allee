@@ -87,6 +87,8 @@ p1EK0c0$stability <- ifelse(p1EK0c0$V4 < pred_lp & p1EK0c0$V5 < lp & p1EK0c0$V4 
 ggplot(p1EK0c0, aes(V5, V4, colour=factor(stability))) + geom_point()
 
 p1EK0c0$state <- ifelse(p1EK0c0$V4 >= pred_lp & p1EK0c0$stability == 1, 2, 0)
+
+# Since we are only using stable branches we can filter away unstable data
 p1EK0c0 %>% filter(., stability==1) %>% ggplot(., aes(V5, V4, colour=factor(state))) + geom_point()
 
 # c=0.005 
@@ -162,7 +164,7 @@ dat_ty_p1 <- rename(dat_ty_p1,
                     P = V4,
                     Temp = V5)
 
-#---- Now I can merge all the scenarios...
+#---- Now I can merge all the scenarios (p=1 and p=05)
 dat_ty <- rbind(dat_ty_p1, dat_ty_p05)
                    
 dat_ty$tc <- dat_ty$Temp - 273.15
@@ -200,6 +202,7 @@ dfs <- dat_ty %>% filter(stability ==  1 & tc > 11 & tc < 50)
 
 dfs$tc <- round(dfs$tc, digits=1) # I do need to round since below I calculate means per temperature. 
 
+# Calculate mean body size for the whole data set
 dfs$m_size <- (dfs$J*3.9 + dfs$A*32.4 + dfs$P*642.6) / (dfs$J + dfs$A + dfs$P)
 
 # Summarize: calculate mean size for each rounded temperature and each scenario
@@ -223,17 +226,20 @@ bound <- data.frame(filter(dat_ty, p==1, stability == 0 & tc < 35) %>%
                     group_by(scen) %>%
                              summarise(bp = min(tc),
                                        lp = max(tc)))
+                                       
 # Add in default number of species
 dfs2$no_spec <- 3
 
-w_tresh <- exp(4) # This value comes from the last two plots (which are on log-scale, hence exp()), where it is clear that the stable P-C-R system never reaches below this mean size and the C-R system never goes above it. An alternative would be to calculate the mean weighted biomass for each scenarion within the unstable region, but that is not needed here becuase the difference is so large.
+ggplot(dfs2, aes(tc, log(mean_mass), colour = factor(scen))) + geom_point(size=3)
+
+w_tresh <- exp(4) # This value comes from the above plot (which is on log-scale, hence exp()), where it is clear that the stable P-C-R system never reaches below this mean size and the C-R system never goes above it. An alternative would be to calculate the mean weighted biomass for each scenario within the unstable region, but that is not needed here becuase the difference is so large.
 dfs2$no_spec <- ifelse(dfs2$scen == 2 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 dfs2$no_spec <- ifelse(dfs2$scen == 4 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 dfs2$no_spec <- ifelse(dfs2$scen == 6 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec) 
 dfs2$no_spec <- ifelse(dfs2$scen == 8 & dfs2$mean_mass < w_tresh, 2, dfs2$no_spec)
 
 # Also need to find no_spec for p=05
-pred_ex_p05 <- data.frame(filter(dat_ty, p==0.5, P > 0.0001) %>% 
+pred_ex_p05 <- data.frame(filter(dat_ty, p==0.5, P > ext_t) %>%
                           group_by(scen) %>%
                           summarise(ext = max(tc)))
 
