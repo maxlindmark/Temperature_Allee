@@ -3,7 +3,7 @@
 %---- If you to open the models in MatCont (see "Read_me") and want to re-export the data , use the code below:
 %-- Note: Analyses are based on the default parameters above (and Table S2 in the Appendix) unless stated otherwise in the curve name. 
 %-- Time integrations are not exported but are only saved, like this: o_"name", where the name is based on the specific parameter deviation from the default model and "o" refers to "orbit". 
-% Simulated data is exported locally so you unfortunately need to specify your own path.
+% Simulated data are exported locally so you unfortunately need to specify your own path.
 % The numbers in parenthesis after the curve name corresponds to (1) backward continuation (2) forward continuation (3) continuation from branch point to get stable C-R curve after predator extinction.
 % The code below reads data from matcont, appends and reshapes data before saving.
 % This is MATLAB code and should be copied into an editor or directly into the command window.
