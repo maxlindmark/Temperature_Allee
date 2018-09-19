@@ -43,3 +43,4 @@ You will need the student version or any version that contains the symbolic pack
 4. Drag the unzipped contents (1) "msII_Paper" folder, (2) the msII_Paper.mat and (3) the msII_Paper.m files to the "Systems" folder in your MatLab folder, see above
 5. Open MatCont by typing matcont in the MATLAB command window.
 6. Now you can open all the diagrams and view them in matlab or use the MatLab code in the file "MatLab_MatCont_model_files/msII_Paper_exporting_curves" to export the diagrams as .csv files locally (*Note, change file path!)
+7. *Note, the names are very abbreviated! Rather than writing the names out here, I suggest you check the R-scripts in 
