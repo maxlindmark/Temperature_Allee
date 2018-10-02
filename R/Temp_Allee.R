@@ -2,6 +2,8 @@
 ## 2018.01.09 - Script for reading data and producing the figure: Continuation over temperature for two different p-values
 ####
 
+#---- Note the sillhouettes are not added here in the script but later with Adobe Acrobat Pro
+
 #---- Clear the workspace
 rm(list=ls(all=TRUE))
 
