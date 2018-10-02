@@ -142,7 +142,7 @@ op <- par(mfrow=c(2,4),
           mar=(c(0, 1.2, 0, 1.2)),
           bty="n", 
           las=1, 
-          oma=c(15, 4, 14, 2),
+          oma=c(17, 4, 17, 11),
           pty="s")
 
 x.seq <-  seq(from=6, to=36, by=6)# c(12, 23, 34)          
@@ -155,7 +155,8 @@ plot(-1,
      ylab="", xlab="", 
      axes=F, 
      xaxs="i", yaxs="i",
-     log="y")
+     log="y") # https://stackoverflow.com/questions/31890315/log-is-not-a-graphical-parameter-error-when-using-plot
+# Here the axis, not the values, is on natural log scale, however I set axis labels manually below to get even and nice numbers
 #rect(0, 0.001, hopf_t, 10, border = NA, col= "grey90")
 lines(R~tc, col="black", lwd=1.8, data=subset(dat_ty, p==0.5))
 points(max_b~tc, pch=16, cex=0.7, 
@@ -166,7 +167,7 @@ data=subset(dfs2, state_v == "R")) # add limit cycles min and max
 axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=2, at=c(10,1,0.1,0.01,0.001,0.001), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("A"), "   Resource")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("A"), "   Resource")), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=0.5 | J
 plot(-1,
@@ -186,7 +187,7 @@ axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=2, at=c(0, 4), labels=F)
 axis(side=2, at=c(0, 1, 2, 3, 4), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("B"), "   Juvenile")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("B"), "   Juvenile")), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=0.5 | A
 plot(-1,
@@ -206,7 +207,7 @@ axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=2, at=c(0, 2), labels=F)
 axis(side=2, at=c(0, 1, 2), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("C"), "   Adult")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("C"), "   Adult")), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=0.5 | P
 plot(-1,
@@ -224,7 +225,7 @@ axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=1, at=x.seq, labels=F, tck=-0.03)
 axis(side=2, at=c(0, 9), labels=F)
 axis(side=2, at=c(0, 3, 6, 9), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("D"), "   Predator")), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("D"), "   Predator")), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=1 | R *Note that the data-subset for lines is based on adults, since 1 column=1 state variable
 plot(-1, 
@@ -249,7 +250,7 @@ lines(R~tc, col="red", lwd=0.8, data=subset(dat_ty, p==1 & stability==0))
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=2, at=c(10,1,0.1,0.01,0.001,0.001), cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("E"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("E"))), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=1 | J
 plot(-1, 
@@ -274,7 +275,7 @@ axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=2, at=c(0, 1), labels=F)
 axis(side=2, at=c(0, 0.2, 0.4, 0.6, 0.8), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("F"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("F"))), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 ##---- p=1 | A
 plot(-1, 
@@ -299,7 +300,7 @@ axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=2, at=c(0, 5), labels=F)
 axis(side=2, at=c(0, 1, 2, 3, 4, 5), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("G"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("G"))), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 
 ##---- p=1 | P *added a small number to p=0 to make it clear there's a line after bistability
@@ -325,7 +326,7 @@ axis(side=1, at=x.seq2, labels=F, tck=-0.03)
 axis(side=1, at=x.seq, labels=T, tck=-0.03, cex.axis=1)
 axis(side=2, at=c(0, 4), labels=F)
 axis(side=2, at=c(0, 1, 2, 3, 4, 5), labels=T, cex.axis=1, tck=-0.03)
-mtext(expression(paste(bold("H"))), side=1, outer=F, line=-10.5, adj=0, cex=0.9)
+mtext(expression(paste(bold("H"))), side=1, outer=F, line=-8.5, adj=0, cex=0.9)
 
 mtext(expression(paste("Biomass density ", "[", g ~m^{-3}, "]")), las=3, side=2, outer=T, line=2, adj=0.5, cex=1)
 
@@ -336,4 +337,3 @@ mtext(expression(paste(italic(p),"=0.5")), side=4, outer=T, line=-0.3, adj=0.8, 
 mtext(expression(paste(italic(p),"=1")), side=4, outer=T, line=-0.3, adj=0.2, cex=1, las=0)
 
 #dev.off()
-
