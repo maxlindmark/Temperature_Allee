@@ -51,16 +51,16 @@ ggplot(data=BP, aes(tc, V6)) +
   geom_ribbon(data=BP_cusp, aes(x=tc, ymax=1, ymin=V6), fill=pal[3], col="NA") + 
   geom_polygon(data=H, aes(x=tc, y=V6), fill="grey80", col="NA") + 
 
-  annotate("text", y = c(0.97, 0.97, 0.77, 0.7), x = c(29, 35.2, 13, 25), label = c("Bistability", "C-R", "Limit\ncycles", "Stable fixed points"), size=9, fontface=3) +
+  annotate("text", y = c(0.97, 0.97, 0.77, 0.7), x = c(29, 35.2, 13, 25), label = c("Bistability", "C-R", "Limit\ncycles", "Stable fixed points"), size=7, fontface=3) +
  
   theme_classic() +
   labs(x = expression(paste("Temperature [", degree*C, "]"))) +
   labs(y = expression(paste("Feeding proportion on juveniles", italic(" (p)")))) +
        
-  theme(legend.title = element_text(size=28), # 23 for paper, 28 for pres, same for all sizes
-        legend.text = element_text(size=26),
-        axis.title = element_text(size=28),
-        axis.text = element_text(size=21),
+  theme(legend.title = element_text(size=17), # 23 for paper, 28 for pres, same for all sizes
+        legend.text = element_text(size=17),
+        axis.title = element_text(size=17),
+        axis.text = element_text(size=14),
         strip.background = element_blank(),
         panel.border = element_rect(colour="black", fill="NA"),
         panel.background = element_rect(fill = pal[1], colour = pal[1]),
