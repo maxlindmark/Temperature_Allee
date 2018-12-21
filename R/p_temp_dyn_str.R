@@ -29,7 +29,7 @@ LP$tc <- LP$V5 - 273.15
 
 BP_cusp <- subset(BP, V6 < min(LP$V6))                               
                                  
-pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f")
+pal <- c("white", "#fdae6b", "#e6550d", "#d7301f")
 
 ggplot(BP, aes(tc, V6)) + geom_line() + xlim(10, 37) + ylim(0.5, 1)
 ggplot(H, aes(tc, V6)) + geom_point() + xlim(10, 37) + ylim(0.5, 1)
@@ -42,7 +42,7 @@ plot(BP$V6~BP$V5)
                   
 #---- Plot for ms
 ggplot(data=BP, aes(tc, V6)) +              
-  coord_cartesian(xlim = c(10, 37), ylim = c(0.5, 1)) +
+  coord_cartesian(xlim = c(10, 37), ylim = c(0, 1)) +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) +
   
