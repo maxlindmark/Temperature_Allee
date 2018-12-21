@@ -122,9 +122,9 @@ levels(dat_ty$c_c) = c("0" = expression(paste(italic("c"),"=0")),
 
 #---- Add in food web png's. *Save locally to your computer!
 library(png)
-mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec_v6.png")
-                        
-mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/2spec_v6.png")
+mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Paper/Figures_R/Main_Figures/3spec_v6.png")
+
+mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Paper/Figures_R/Main_Figures/2spec_v6.png")
                  
 # Create a variable for food web structure to match legend in figure 
 fws <- tail(dat_ty)
@@ -202,4 +202,4 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        annotation_custom2(rasterGrob(mypng_2spec, interpolate=TRUE), xmin=31.7, 
        xmax=34.89, ymin=1.3, ymax=1.6, data= subset(dat_ty2, scen > 1))
          
-       
+      
