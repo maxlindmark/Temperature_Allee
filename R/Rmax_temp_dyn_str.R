@@ -104,7 +104,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data){ layer(d
                                           ymin = ymin, ymax = ymax))}
  
 #---- Full plot
-pal <- c("#fef0d9", "#fdcc8a", "#fc8d59", "#d7301f") # This palette is from colorbrewer
+pal <- c("white", "#fdae6b", "#e6550d", "#d7301f")
 
 #-- Create new variables for plotting
 #dat_ty$ERmax2 <- factor(dat_ty$ERmax)
@@ -122,9 +122,9 @@ levels(dat_ty$c_c) = c("0" = expression(paste(italic("c"),"=0")),
 
 #---- Add in food web png's. *Save locally to your computer!
 library(png)
-mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/Desktop/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec_v4.png")
-
-mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/Desktop/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/2spec_v4.png")
+mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec_v5.png")
+                        
+mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/2spec_v5.png")
                  
 # Create a variable for food web structure to match legend in figure 
 fws <- tail(dat_ty)
@@ -201,4 +201,4 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        annotation_custom2(rasterGrob(mypng_2spec, interpolate=TRUE), xmin=31.7, 
        xmax=34.89, ymin=1.3, ymax=1.6, data= subset(dat_ty2, scen > 1))
          
-      
+       
