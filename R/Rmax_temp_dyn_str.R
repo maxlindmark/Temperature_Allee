@@ -122,9 +122,9 @@ levels(dat_ty$c_c) = c("0" = expression(paste(italic("c"),"=0")),
 
 #---- Add in food web png's. *Save locally to your computer!
 library(png)
-mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec_v5.png")
+mypng_3spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/3spec_v6.png")
                         
-mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/2spec_v5.png")
+mypng_2spec <- readPNG("//storage-og.slu.se/home$/mxli0002/My Documents/Max SLU/Papers/ms_II/Draft_1/Figures&Data/T_Rmax19_EK_Heatmap/2spec_v6.png")
                  
 # Create a variable for food web structure to match legend in figure 
 fws <- tail(dat_ty)
@@ -192,7 +192,8 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
              axis.title = element_text(size=18),
              strip.text = element_text(size=18),      
              strip.background = element_blank(),
-             aspect.ratio = 1) +
+             aspect.ratio = 1,
+             legend.key = element_rect(color = "gray50")) +
                     
        geom_text(data=dat_text,aes(x=34, y=2.53, label=label), size=6, fontface="bold") +
        annotation_raster(mypng_3spec,
