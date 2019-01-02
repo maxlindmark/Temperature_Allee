@@ -187,7 +187,7 @@ ggplot(dat_ty2, aes(tc, Rmax, fill = factor(bif))) +
        theme(panel.spacing = unit(0.9, "lines"),
              panel.border = element_rect(colour="black", fill="NA"),
              legend.title = element_text(size=18),
-             legend.text = element_text(size=15, face = "italic"),
+             legend.text = element_text(size=13, face = "italic"),
              axis.text = element_text(size=13), 
              axis.title = element_text(size=18),
              strip.text = element_text(size=18),      
