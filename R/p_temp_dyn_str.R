@@ -51,7 +51,7 @@ ggplot(data=BP, aes(tc, V6)) +
   geom_ribbon(data=BP_cusp, aes(x=tc, ymax=1, ymin=V6), fill=pal[3], col="NA") + 
   geom_polygon(data=H, aes(x=tc, y=V6), fill="grey80", col="NA") + 
 
-  annotate("text", y = c(0.97, 0.97, 0.77, 0.7), x = c(29, 35.2, 13, 25), label = c("Bistability", "C-R", "Limit\ncycles", "Stable fixed points"), size=7, fontface=3) +
+  annotate("text", y = c(0.97, 0.97, 0.77, 0.45), x = c(29, 35.2, 13, 23.5), label = c("Bistability", "C-R", "Limit\ncycles", "Stable fixed points"), size=8, fontface=3) +
  
   theme_classic() +
   labs(x = expression(paste("Temperature [", degree*C, "]"))) +
@@ -68,3 +68,7 @@ ggplot(data=BP, aes(tc, V6)) +
         plot.margin = unit(c(1,0.1,0.1,0.1), "cm")) #+
 #        
 #        annotation_raster(mypng_3spec,ymin=30,ymax=37,xmin=0.5,xmax=0.63) 
+
+
+
+
