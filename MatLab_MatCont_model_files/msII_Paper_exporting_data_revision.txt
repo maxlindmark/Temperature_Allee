@@ -1,0 +1,327 @@
+%------------ Exporting data ------------%
+%------ To only reproduce the figures, see the *github-repository*. 
+%---- If you have followed the instructions below and want to re-export the data based on the simulated curves in the GUI, use the code below:
+%-- Note: Analyses are based on the default parameters above (and Table X in supplementary material) unless stated otherwise. 
+%-- Time integrations are not exported but are only saved, like this: o_"name", where the name is based on the specific parameter deviation from the default model. 
+% simulated data are exported below and saved as csv-files and stored here: * ADD LINK TO GITHUB URL *
+% The numbers in parenthesis after the curve name corresponds to (1) backward continuation (2) forward continuation (3) continuation from branch point to get stable C-R curve after predator extinction in the case of bistability
+% The code below reads data from matcont, appends and reshapes data before saving.
+% Below is MATLAB code and should be copied into an editor or directly into the command window.
+
+%-------------- Main text:
+%-------------- Fig. 1 - "Temp_Allee" - Continuation over temperature, default model AND p=0.5
+% Orbit is named o_def
+% p=1
+load Systems/msII_Paper/diagram/Temp_Allee(1).mat 
+x1 = x % The x-matrix contains the state variables, they are in the same order as specified in the model definition (called coordinates in matcont). See the line below for the scatter plot, and you will see just that. If you want to export user-defined user functions, they are stored in a matrix called "h" (note: this is currently not implemented here as it is not needed for the main figures, please send me an e-mail if you need help). 
+
+load Systems/msII_Paper/diagram/Temp_Allee(2).mat 
+x2 = x
+
+load Systems/msII_Paper/diagram/Temp_Allee(3).mat % to get this curve, select inital point and find the branch point from Temp_Allee(2). Change curve type to equilibrium and go forward. Double-check you are on the right branch by checking eigenvalues for stability
+x3 = fliplr(x)
+
+matx = horzcat(x1,x2,x3) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'Temp_Allee.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+% Orbit is named o_p05
+% p=0.5
+load Systems/msII_Paper/diagram/Temp_Allee_p05(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Temp_Allee_p05(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'Temp_Allee_p05.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+
+
+%-------------- Fig. 2 - "Rmax_temp_dyn_str" - Two-parameter (temp + Rmax) continuation of BP
+%and LP for c=0 and 0.005 and KE=0 and -0.43(ERmax in paper) (2*2 plot)
+% Orbit is named o_def
+
+%---- Top left panel: c=0 and ERmax(EK)=0
+% Curve with branch point is named Rmax_temp_dyn_str(c0EK0)
+% For this first of four parameter combinations the limit point curve is outside the parameter
+% Space and is therefore not exported, only the branch point (BP)
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK0_BP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK0_BP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c0EK0_BP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+%---- Top right panel: c=0 and ERmax(EK)=-0.43
+%-- Branch point
+% Curve with limit and branch point is named Rmax_temp_dyn_str(c0EK43)
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK43_BP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK43_BP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c0EK43_BP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+
+%-- Limit point
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK43_LP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c0EK43_LP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c0EK43_LP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+        
+%---- Bottom left panel: c=0.005 and ERmax(EK)=0
+%-- Branch point
+% Curve with limit and branch point is named Rmax_temp_dyn_str(c05EK0)
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK0_BP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK0_BP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c05EK0_BP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+
+%-- Limit point
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK0_LP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK0_LP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c05EK0_LP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+
+%---- Bottom right panel: c=0.005 and ERmax(EK)=-0.43
+%-- Branch point
+% Curve with limit and branch point is named Rmax_temp_dyn_str(c05EK43)
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK43_BP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK43_BP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c05EK43_BP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+
+%-- limit point
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK43_LP(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/Rmax_temp_dyn_str_c05EK43_LP(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2)
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,6))
+        
+filename = 'Rmax_temp_dyn_str_c05EK43_LP.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+
+%-- Fig. 4 - "extinct_temp_theta_p" 
+%************************************* MAYBE SKIP AND PUT IN APPENDIX!!
+
+%-- Fig. 5 - "community_body_size" - continuation over temperature of stable equilibrium for
+%p=05, 1; ERmax(EK)=0, -0.43; c=0, 0.005.
+% Orbits are named o_def and o_p05
+%---- Top left panel: p=05 and ERmax(EK)=0. 
+% c=0
+load Systems/msII_Paper/diagram/com_body_size_p05EK0c0(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p05EK0c0(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p05EK0c0.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx) 
+        
+% c=0.005
+load Systems/msII_Paper/diagram/com_body_size_p05EK0c05(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p05EK0c05(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p05EK0c05.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+        
+%---- Bottom left panel: p=05 and ERmax(EK)=-0.43. 
+% c=0
+load Systems/msII_Paper/diagram/com_body_size_p05EK43c0(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p05EK43c0(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p05EK43c0.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx) 
+        
+% c=0.005
+load Systems/msII_Paper/diagram/com_body_size_p05EK43c05(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p05EK43c05(2).mat 
+x2 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p05EK43c05(3).mat 
+x3 = x
+
+matx = horzcat(x1,x2,x3) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p05EK43c05.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
+        
+%---- Top right panel: p=1 and ERmax(EK)=0. 
+% c=0
+load Systems/msII_Paper/diagram/com_body_size_p1EK0c0(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK0c0(2).mat 
+x2 = x
+
+matx = horzcat(x1,x2) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p1EK0c0.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx) 
+        
+% c=0.005
+load Systems/msII_Paper/diagram/com_body_size_p1EK0c05(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK0c05(2).mat 
+x2 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK0c05(3).mat 
+x3 = x
+
+matx = horzcat(x1,x2,x3) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p1EK0c05.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)        
+
+%---- Bottom right panel: p=1 and ERmax(EK)=-0.43. 
+% c=0
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c0(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c0(2).mat 
+x2 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c0(3).mat 
+x3 = x
+
+matx = horzcat(x1,x2,x3) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p1EK43c0.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx) 
+        
+% c=0.005
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c05(1).mat 
+x1 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c05(2).mat 
+x2 = x
+
+load Systems/msII_Paper/diagram/com_body_size_p1EK43c05(3).mat 
+x3 = x
+
+matx = horzcat(x1,x2,x3) % concatinate horizontically
+fullmatx = matx'
+
+scatter(fullmatx(:,5), fullmatx(:,4)) % plotting predator to see it matches R-plot
+        
+filename = 'com_body_size_p1EK43c05.csv';
+    mypath = '\\storage-og.slu.se\home$\mxli0002\Desktop\matcont';
+        csvwrite(fullfile(mypath,filename), fullmatx)
