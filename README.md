@@ -20,7 +20,7 @@ RCurl_1.95-4.10
 gridExtra_2.3
 
 ### see how the model is implemented in matcont
-... see "MatLab_MatCont_model_files", see "msII_Paper_MatCont_implementation.txt" and "User_functions.txt" (which are needed to track non-state variables in MatCont, such as maturation or net biomass production)
+... see "MatLab_MatCont_model_files_revision" or "MatLab_MatCont_model_files_generic" for the original model formulation, see "msII_Paper_MatCont_implementation.txt" and "User_functions.txt" (which are needed to track non-state variables in MatCont, such as maturation or net biomass production. Note, only in the "empirical" model!)
 
 ### open the model in MatCont GUI and re-export or check simulated curves
 ... follow the instructions below.
