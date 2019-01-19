@@ -2,6 +2,8 @@
 ## 2018.01.09 - Script for reading data and producing the figure: Continuation of bifurcation points (limit point, Hopf and branch point) in two parameter space; temperature and p
 ####
 
+# Note I have added the arrows and roman numerals using Adoe Acrobat DC
+
 #---- Clear the workspace
 rm(list=ls(all=TRUE))
 
