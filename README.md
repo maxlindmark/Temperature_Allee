@@ -1,6 +1,9 @@
 # Temperature_Allee
 Data and MatCont-files to reproduce the main analyses in Lindmark et al (2018).
 
+* Update: Early view is now online in Ecology Letters! 
+https://onlinelibrary.wiley.com/doi/10.1111/ele.13235#.XHzzJqZzqpk.twitter
+
 Data: contains simulated data used for creating figures
 R: scripts for producing figures based on already simulated data
 MatLab_Mat_Cont_model_files: contains model files and text files for implementing the model in MatCont
